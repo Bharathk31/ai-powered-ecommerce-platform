@@ -9,15 +9,15 @@ export function HomePage() {
 
         {/* Left section */}
         <div className="left-section">
-          <a href="index.html" className="header-link">
+          <a href="/" className="header-link">
             <img
               className="logo"
-              src="/starting-code/images/logo-white.png"
+              src="/images/logo-white.png"
             />
 
             <img
               className="mobile-logo"
-              src="/starting-code/images/mobile-logo-white.png"
+              src="/images/mobile-logo-white.png"
             />
           </a>
         </div>
@@ -33,7 +33,7 @@ export function HomePage() {
           <button className="search-button">
             <img
               className="search-icon"
-              src="/starting-code/images/icons/search-icon.png"
+              src="/images/icons/search-icon.png"
             />
           </button>
         </div>
@@ -43,7 +43,7 @@ export function HomePage() {
 
           <a
             className="orders-link header-link"
-            href="orders.html"
+            href="/orders.html"
           >
             <span className="orders-text">
               Orders
@@ -52,11 +52,11 @@ export function HomePage() {
 
           <a
             className="cart-link header-link"
-            href="checkout.html"
+            href="/checkout.html"
           >
             <img
               className="cart-icon"
-              src="/starting-code/images/icons/cart-icon.png"
+              src="/images/icons/cart-icon.png"
             />
 
             <div className="cart-quantity">
@@ -71,7 +71,6 @@ export function HomePage() {
         </div>
       </div>
 
-
       {/* Home Page */}
       <div className="home-page">
 
@@ -83,7 +82,7 @@ export function HomePage() {
             <div className="product-image-container">
               <img
                 className="product-image"
-                src="/starting-code/images/products/athletic-cotton-socks-6-pairs.jpg"
+                src="/images/products/athletic-cotton-socks-6-pairs.jpg"
               />
             </div>
 
@@ -94,7 +93,7 @@ export function HomePage() {
             <div className="product-rating-container">
               <img
                 className="product-rating-stars"
-                src="/starting-code/images/ratings/rating-45.png"
+                src="/images/ratings/rating-45.png"
               />
 
               <div className="product-rating-count link-primary">
@@ -125,7 +124,7 @@ export function HomePage() {
 
             <div className="added-to-cart">
               <img
-                src="/starting-code/images/icons/checkmark.png"
+                src="/images/icons/checkmark.png"
               />
               Added
             </div>
@@ -136,14 +135,13 @@ export function HomePage() {
 
           </div>
 
-
           {/* Product 2 */}
           <div className="product-container">
 
             <div className="product-image-container">
               <img
                 className="product-image"
-                src="/starting-code/images/products/intermediate-composite-basketball.jpg"
+                src="/images/products/intermediate-composite-basketball.jpg"
               />
             </div>
 
@@ -154,7 +152,7 @@ export function HomePage() {
             <div className="product-rating-container">
               <img
                 className="product-rating-stars"
-                src="/starting-code/images/ratings/rating-40.png"
+                src="/images/ratings/rating-40.png"
               />
 
               <div className="product-rating-count link-primary">
@@ -185,7 +183,7 @@ export function HomePage() {
 
             <div className="added-to-cart">
               <img
-                src="/starting-code/images/icons/checkmark.png"
+                src="/images/icons/checkmark.png"
               />
               Added
             </div>
@@ -196,14 +194,13 @@ export function HomePage() {
 
           </div>
 
-
           {/* Product 3 */}
           <div className="product-container">
 
             <div className="product-image-container">
               <img
                 className="product-image"
-                src="/starting-code/images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg"
+                src="/images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg"
               />
             </div>
 
@@ -214,7 +211,7 @@ export function HomePage() {
             <div className="product-rating-container">
               <img
                 className="product-rating-stars"
-                src="/starting-code/images/ratings/rating-45.png"
+                src="/images/ratings/rating-45.png"
               />
 
               <div className="product-rating-count link-primary">
@@ -245,7 +242,7 @@ export function HomePage() {
 
             <div className="added-to-cart">
               <img
-                src="/starting-code/images/icons/checkmark.png"
+                src="/images/icons/checkmark.png"
               />
               Added
             </div>
