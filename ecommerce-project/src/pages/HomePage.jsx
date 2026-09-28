@@ -44,7 +44,7 @@ export function HomePage() {
 
           <a
             className="orders-link header-link"
-            href="/orders.html"
+            href="//orders"
           >
             <span className="orders-text">
               Orders
@@ -53,7 +53,7 @@ export function HomePage() {
 
           <a
             className="cart-link header-link"
-            href="/checkout.html"
+            href="//checkout"
           >
             <img
               className="cart-icon"
