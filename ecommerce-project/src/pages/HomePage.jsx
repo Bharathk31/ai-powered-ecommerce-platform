@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import './header.css';
 import './HomePage.css';
 
@@ -10,7 +11,7 @@ export function HomePage() {
 
         {/* Left section */}
         <div className="left-section">
-          <a href="/" className="header-link">
+          <Link to="/" className="header-link">
             <img
               className="logo"
               src="/images/logo-white.png"
@@ -20,7 +21,7 @@ export function HomePage() {
               className="mobile-logo"
               src="/images/mobile-logo-white.png"
             />
-          </a>
+          </Link>
         </div>
 
         {/* Middle section */}
@@ -42,18 +43,18 @@ export function HomePage() {
         {/* Right section */}
         <div className="right-section">
 
-          <a
+          <Link
             className="orders-link header-link"
-            href="//orders"
+            to="/orders"
           >
             <span className="orders-text">
               Orders
             </span>
-          </a>
+          </Link>
 
-          <a
+          <Link
             className="cart-link header-link"
-            href="//checkout"
+            to="/checkout"
           >
             <img
               className="cart-icon"
@@ -67,7 +68,7 @@ export function HomePage() {
             <div className="cart-text">
               Cart
             </div>
-          </a>
+          </Link>
 
         </div>
       </div>
