@@ -5,6 +5,7 @@ import "./HomePage.css";
 
 export function HomePage() {
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     axios
@@ -15,11 +16,20 @@ export function HomePage() {
       .catch((error) => {
         console.error('Error fetching products:', error);
       });
+      axios.get('http://localhost:3000/api/cart-items')
+      .then((response) => {
+        setCart(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching cart items:', error);
+      });
+
+
   }, []);
 
   return (
     <>
-      <Header />
+      <Header cart={cart} />
 
 
       {/* Home Page */}
