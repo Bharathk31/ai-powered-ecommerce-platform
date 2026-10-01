@@ -9,13 +9,14 @@ import { TrackingPage } from "./pages/TrackingPage";
 function App() {
       const [cart, setCart] = useState([]);
       useEffect(() => {
-        axios.get('/api/cart-items?expand=product')
-      .then((response) => {
-        setCart(response.data);
-      })
-      .catch((error) => {
-        console.error('Error fetching cart items:', error);
-      });
+        const fetchAppData = async () => {
+            const response = await axios.get('/api/cart-items?expand=product');
+            setCart(response.data);
+    
+
+        };
+      fetchAppData();
+    
       }, []);
 
   return (
