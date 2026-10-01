@@ -3,8 +3,8 @@ import dayjs from "dayjs";
 import { Link } from "react-router";
 import { useEffect, useState, Fragment } from "react";
 
-import { formatMoney } from "../utils/Money.js";
-import { Header } from "../Components/Header.jsx";
+import { formatMoney } from "../../utils/Money.js";
+import { Header } from "../../Components/Header.jsx";
 import "./OrdersPage.css";
 
 export function OrdersPage({ cart }) {
