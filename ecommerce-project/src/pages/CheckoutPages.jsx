@@ -1,4 +1,4 @@
-import {fromatMoney} from "../utils/money.js";
+import { formatMoney } from "../utils/money.js";
 import './checkout-header.css';
 import './checkoutpage.css';
 
