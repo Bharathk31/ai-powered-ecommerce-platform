@@ -13,6 +13,8 @@
   left: 0;
   right: 0;
   height: 60px;
+
+  z-index: 1000;
 }
 
 .header .left-section {
@@ -38,67 +40,99 @@
   border: 1px solid white;
 }
 
-.header .logo {
-  height: 26px;
-  margin-top: 1px;
+/* Logo */
+.header .logo-container {
+  width: 65px;
+  height: 60px;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+  border: none;
+
+  background: transparent;
 }
 
-.header .mobile-logo {
-  display: none;
+.header .logo-container:hover {
+  border: none;
+  background: transparent;
 }
 
-@media (max-width: 675px) {
-  .header .logo {
-    display: none;
-  }
+.header .brand-logo {
+  width: 180px;
+  height: 100px;
+  object-fit: contain;
+  display: block;
 
-  .header .mobile-logo {
-    display: block;
-    height: 26px;
-    margin-top: 1px;
-  }
+  mix-blend-mode: multiply;
 }
 
+/* Middle section */
 .header .middle-section {
   flex: 1;
   max-width: 850px;
   margin-left: 10px;
   margin-right: 10px;
+
   display: flex;
 }
 
 .header .search-bar {
   flex: 1;
   width: 0;
+
   font-size: 16px;
   height: 38px;
   padding-left: 15px;
+
   border: none;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+
+  outline: none;
+}
+
+.header .search-bar:focus {
+  box-shadow: inset 0 0 0 2px rgb(186, 255, 190);
 }
 
 .header .search-button {
   background-color: rgb(186, 255, 190);
   border: none;
+
   width: 45px;
   height: 40px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+
   flex-shrink: 0;
+
+  cursor: pointer;
+}
+
+.header .search-button:hover {
+  background-color: rgb(160, 245, 170);
 }
 
 .header .search-icon {
   height: 20px;
-  margin-left: 0px;
+  margin-left: 0;
   margin-top: 3px;
 }
 
+/* Right section */
 .header .right-section {
   width: 180px;
   flex-shrink: 0;
+
   display: flex;
   justify-content: end;
 }
@@ -108,6 +142,7 @@
 
   display: flex;
   align-items: center;
+
   padding-left: 13px;
   padding-right: 13px;
 }
@@ -120,8 +155,10 @@
 
 .header .cart-link {
   color: white;
+
   display: flex;
   align-items: center;
+
   position: relative;
 }
 
@@ -137,6 +174,7 @@
 
 .header .cart-quantity {
   color: rgb(8, 79, 45);
+
   font-size: 14px;
   font-weight: 700;
 

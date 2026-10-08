@@ -1,27 +1,36 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import "./header.css";
 
-export function Header({cart}) {
+export function Header({ cart, onSearch }) {
+    const [searchText, setSearchText] = useState("");
+
     let totalQuantity = 0;
 
     cart.forEach((cartItem) => {
         totalQuantity += cartItem.quantity;
     });
 
+    function handleSearch() {
+        onSearch(searchText);
+    }
+
+    function handleKeyDown(event) {
+        if (event.key === "Enter") {
+            handleSearch();
+        }
+    }
+
     return (
         <div className="header">
 
             {/* Left section */}
             <div className="left-section">
-                <Link to="/" className="header-link">
+                <Link to="/" className="header-link logo-container">
                     <img
-                        className="logo"
-                        src="/images/logo-white.png"
-                    />
-
-                    <img
-                        className="mobile-logo"
-                        src="/images/mobile-logo-white.png"
+                        className="brand-logo"
+                        src="/images/bharath-logo.png"
+                        alt="Bharath logo"
                     />
                 </Link>
             </div>
@@ -31,13 +40,22 @@ export function Header({cart}) {
                 <input
                     className="search-bar"
                     type="text"
-                    placeholder="Search"
+                    placeholder="Search products..."
+                    value={searchText}
+                    onChange={(event) =>
+                        setSearchText(event.target.value)
+                    }
+                    onKeyDown={handleKeyDown}
                 />
 
-                <button className="search-button">
+                <button
+                    className="search-button"
+                    onClick={handleSearch}
+                >
                     <img
                         className="search-icon"
                         src="/images/icons/search-icon.png"
+                        alt="Search"
                     />
                 </button>
             </div>
@@ -61,6 +79,7 @@ export function Header({cart}) {
                     <img
                         className="cart-icon"
                         src="/images/icons/cart-icon.png"
+                        alt="Cart"
                     />
 
                     <div className="cart-quantity">

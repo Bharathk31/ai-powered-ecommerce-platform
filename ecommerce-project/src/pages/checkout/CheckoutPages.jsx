@@ -35,26 +35,26 @@ export function CheckoutPages({ cart }) {
 
   return (
     <>
-      {/* Checkout Header */}
+      {/* =========================================
+          Checkout Header
+          ========================================= */}
+
       <div className="checkout-header">
         <div className="header-content">
 
+          {/* Logo */}
           <div className="checkout-header-left-section">
             <a href="/">
               <img
                 className="logo"
-                src="/images/logo.png"
-                alt="Logo"
-              />
-
-              <img
-                className="mobile-logo"
-                src="/images/mobile-logo.png"
-                alt="Logo"
+                src="/images/bharath-logo.png"
+                alt="Store logo"
               />
             </a>
           </div>
 
+
+          {/* Checkout title */}
           <div className="checkout-header-middle-section">
             Checkout (
             <a
@@ -66,6 +66,8 @@ export function CheckoutPages({ cart }) {
             )
           </div>
 
+
+          {/* Secure checkout */}
           <div className="checkout-header-right-section">
             <img
               src="/images/icons/checkout-lock-icon.png"
@@ -76,7 +78,11 @@ export function CheckoutPages({ cart }) {
         </div>
       </div>
 
-      {/* Checkout Page */}
+
+      {/* =========================================
+          Checkout Page
+          ========================================= */}
+
       <div className="checkout-page">
 
         <div className="page-title">
@@ -97,6 +103,7 @@ export function CheckoutPages({ cart }) {
           />
 
         </div>
+
       </div>
     </>
   );

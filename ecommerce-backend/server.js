@@ -3,103 +3,324 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { sequelize } from './models/index.js';
+
 import productRoutes from './routes/products.js';
 import deliveryOptionRoutes from './routes/deliveryOptions.js';
 import cartItemRoutes from './routes/cartItems.js';
 import orderRoutes from './routes/orders.js';
 import resetRoutes from './routes/reset.js';
 import paymentSummaryRoutes from './routes/paymentSummary.js';
+import reviewRoutes from './routes/review.js';
+
 import { Product } from './models/Product.js';
 import { DeliveryOption } from './models/DeliveryOption.js';
 import { CartItem } from './models/CartItem.js';
 import { Order } from './models/Order.js';
+import './models/Review.js';
+
 import { defaultProducts } from './defaultData/defaultProducts.js';
 import { defaultDeliveryOptions } from './defaultData/defaultDeliveryOptions.js';
 import { defaultCart } from './defaultData/defaultCart.js';
 import { defaultOrders } from './defaultData/defaultOrders.js';
+
 import fs from 'fs';
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
-// Middleware
+const app = express();
+
+const PORT =
+    process.env.PORT || 3000;
+
+
+const __filename =
+    fileURLToPath(import.meta.url);
+
+const __dirname =
+    path.dirname(__filename);
+
+
+/*
+    ==========================================
+    MIDDLEWARE
+    ==========================================
+*/
+
 app.use(cors());
+
 app.use(express.json());
 
-// Serve images from the images folder
-app.use('/images', express.static(path.join(__dirname, 'images')));
 
-// Use routes
-app.use('/api/products', productRoutes);
-app.use('/api/delivery-options', deliveryOptionRoutes);
-app.use('/api/cart-items', cartItemRoutes);
-app.use('/api/orders', orderRoutes);
-app.use('/api/reset', resetRoutes);
-app.use('/api/payment-summary', paymentSummaryRoutes);
+/*
+    ==========================================
+    SERVE IMAGES
+    ==========================================
+*/
 
-// Serve static files from the dist folder
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(
+  '/images',
+  express.static(
+    path.join(__dirname, 'images')
+  )
+);
 
-// Catch-all route to serve index.html for any unmatched routes
+
+/*
+    ==========================================
+    API ROUTES
+    ==========================================
+*/
+
+app.use(
+  '/api/products',
+  productRoutes
+);
+
+app.use(
+  '/api/delivery-options',
+  deliveryOptionRoutes
+);
+
+app.use(
+  '/api/cart-items',
+  cartItemRoutes
+);
+
+app.use(
+  '/api/orders',
+  orderRoutes
+);
+
+app.use(
+  '/api/reset',
+  resetRoutes
+);
+
+app.use(
+  '/api/payment-summary',
+  paymentSummaryRoutes
+);
+
+app.use(
+  '/api/reviews',
+  reviewRoutes
+);
+
+
+/*
+    ==========================================
+    SERVE FRONTEND
+    ==========================================
+*/
+
+app.use(
+  express.static(
+    path.join(__dirname, 'dist')
+  )
+);
+
+
+/*
+    ==========================================
+    CATCH-ALL ROUTE
+    ==========================================
+*/
+
 app.get('*', (req, res) => {
-  const indexPath = path.join(__dirname, 'dist', 'index.html');
+
+  const indexPath =
+        path.join(
+          __dirname,
+          'dist',
+          'index.html'
+        );
+
   if (fs.existsSync(indexPath)) {
+
     res.sendFile(indexPath);
+
   } else {
-    res.status(404).send('index.html not found');
+
+    res
+      .status(404)
+      .send(
+        'index.html not found'
+      );
   }
 });
 
-// Error handling middleware
+
+/*
+    ==========================================
+    ERROR HANDLING
+    ==========================================
+*/
+
 /* eslint-disable no-unused-vars */
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).json({ error: 'Something went wrong!' });
+
+  res.status(500).json({
+    error: 'Something went wrong!',
+  });
 });
+
 /* eslint-enable no-unused-vars */
 
-// Sync database and load default data if none exist
+
+/*
+    ==========================================
+    DATABASE SYNC
+    ==========================================
+*/
+
 await sequelize.sync();
 
-const productCount = await Product.count();
+
+/*
+    ==========================================
+    LOAD DEFAULT DATA
+    ==========================================
+*/
+
+const productCount =
+    await Product.count();
+
+
 if (productCount === 0) {
-  const timestamp = Date.now();
 
-  const productsWithTimestamps = defaultProducts.map((product, index) => ({
-    ...product,
-    createdAt: new Date(timestamp + index),
-    updatedAt: new Date(timestamp + index)
-  }));
+  const timestamp =
+        Date.now();
 
-  const deliveryOptionsWithTimestamps = defaultDeliveryOptions.map((option, index) => ({
-    ...option,
-    createdAt: new Date(timestamp + index),
-    updatedAt: new Date(timestamp + index)
-  }));
 
-  const cartItemsWithTimestamps = defaultCart.map((item, index) => ({
-    ...item,
-    createdAt: new Date(timestamp + index),
-    updatedAt: new Date(timestamp + index)
-  }));
+  /*
+        PRODUCTS
+    */
 
-  const ordersWithTimestamps = defaultOrders.map((order, index) => ({
-    ...order,
-    createdAt: new Date(timestamp + index),
-    updatedAt: new Date(timestamp + index)
-  }));
+  const productsWithTimestamps =
+        defaultProducts.map(
+          (product, index) => ({
+            ...product,
 
-  await Product.bulkCreate(productsWithTimestamps);
-  await DeliveryOption.bulkCreate(deliveryOptionsWithTimestamps);
-  await CartItem.bulkCreate(cartItemsWithTimestamps);
-  await Order.bulkCreate(ordersWithTimestamps);
+            createdAt:
+                    new Date(
+                      timestamp + index
+                    ),
 
-  console.log('Default data added to the database.');
+            updatedAt:
+                    new Date(
+                      timestamp + index
+                    ),
+          })
+        );
+
+
+  /*
+        DELIVERY OPTIONS
+    */
+
+  const deliveryOptionsWithTimestamps =
+        defaultDeliveryOptions.map(
+          (option, index) => ({
+            ...option,
+
+            createdAt:
+                    new Date(
+                      timestamp + index
+                    ),
+
+            updatedAt:
+                    new Date(
+                      timestamp + index
+                    ),
+          })
+        );
+
+
+  /*
+        CART ITEMS
+    */
+
+  const cartItemsWithTimestamps =
+        defaultCart.map(
+          (item, index) => ({
+            ...item,
+
+            createdAt:
+                    new Date(
+                      timestamp + index
+                    ),
+
+            updatedAt:
+                    new Date(
+                      timestamp + index
+                    ),
+          })
+        );
+
+
+  /*
+        ORDERS
+    */
+
+  const ordersWithTimestamps =
+        defaultOrders.map(
+          (order, index) => ({
+            ...order,
+
+            createdAt:
+                    new Date(
+                      timestamp + index
+                    ),
+
+            updatedAt:
+                    new Date(
+                      timestamp + index
+                    ),
+          })
+        );
+
+
+  /*
+        INSERT DEFAULT DATA
+    */
+
+  await Product.bulkCreate(
+    productsWithTimestamps
+  );
+
+  await DeliveryOption.bulkCreate(
+    deliveryOptionsWithTimestamps
+  );
+
+  await CartItem.bulkCreate(
+    cartItemsWithTimestamps
+  );
+
+  await Order.bulkCreate(
+    ordersWithTimestamps
+  );
+
+
+  console.log(
+    'Default data added to the database.'
+  );
 }
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+
+/*
+    ==========================================
+    START SERVER
+    ==========================================
+*/
+
+app.listen(
+  PORT,
+  () => {
+
+    console.log(
+      `Server is running on port ${PORT}`
+    );
+
+  }
+);
